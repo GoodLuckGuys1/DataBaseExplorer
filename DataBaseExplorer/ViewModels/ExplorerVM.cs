@@ -71,7 +71,17 @@ namespace DataBaseExplorer.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool? _dialogResult;
 
+        public bool? DialogResult
+        {
+            get { return _dialogResult; }
+            protected set
+            {
+                _dialogResult = value;
+                OnPropertyChanged();
+            }
+        }
         public decimal Price
         {
             get
@@ -138,8 +148,12 @@ namespace DataBaseExplorer.ViewModels
             ConnectDb connectDb = new ConnectDb();
             ConnectDbVM connectDbVM = (ConnectDbVM)connectDb.DataContext;
             connectDb.ShowDialog();
-            if (connectDbVM.ServerDatabase != null)
-                contextDb = new ContextDb($"Server={connectDbVM.ServerDatabase};Database={connectDbVM.NameDatabase};Trusted_Connection=False;MultipleActiveResultSets=true;");
+            if (connectDbVM.IsSuccessConnect == false)
+            {
+                DialogResult = false;
+                return;
+            }
+            contextDb = new ContextDb($"Server={connectDbVM.ServerDatabase};Database={connectDbVM.NameDatabase};Trusted_Connection=False;MultipleActiveResultSets=true;");
             CustomerRepository customerRepository = new CustomerRepository(contextDb);
             OrderRepository orderRepository = new OrderRepository(contextDb);
             Customers = customerRepository.GetCustomers();

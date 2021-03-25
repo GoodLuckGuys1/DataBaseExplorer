@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:DataBaseExplorer.ViewModels"
+        xmlns:attachedProperties="clr-namespace:DataBaseExplorer.HelperClasses"
+        attachedProperties:DialogCloser.DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
         Title="Explorer">
     <Window.DataContext>

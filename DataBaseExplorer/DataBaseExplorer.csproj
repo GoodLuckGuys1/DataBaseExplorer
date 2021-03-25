@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Context\ContextDb.cs" />
+    <Compile Include="HelperClasses\DialogCloser.cs" />
     <Compile Include="HelperClasses\RelayAsyncCommand.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="Models\Customer.cs" />

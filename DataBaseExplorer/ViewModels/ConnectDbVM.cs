@@ -51,6 +51,8 @@ namespace DataBaseExplorer.ViewModels
             }
         }
         public ICommand ConnectWithDb { get; set; }
+        public bool IsSuccessConnect = false;
+
         public ConnectDbVM()
         {
             ConnectWithDb = new RelayAsyncCommand(async () => await connectionWitDataBase());
@@ -79,9 +81,10 @@ namespace DataBaseExplorer.ViewModels
                     return;
                 }
                 ((IProgress<string>)status).Report("Connection Success");
+
+                IsSuccessConnect = true;
                 context.Dispose();
             });
-            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
